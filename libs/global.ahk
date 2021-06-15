@@ -1,24 +1,26 @@
-global Visible := true
-global Profile := 1
-global State := 0
+global ActiveState := -1
+global ActiveProfile := 1
+global ActiveOverlays := true
+
+global States := {}
 
 global ParmDebug := false
 global ParmProfiles := 2
 global ParmPressDelay := 0.5
+global ParmTimerDelay := 100
 
-global GuiFont := "Segoe UI"
-global GuiColorForeground := "AFAFAF"
-global GuiColorBackground := "111111"
-global GuiTransparency := 170
-global GuiMargin := 5
-global GuiRefresh := 100
+global ParmFont := "Segoe UI"
+global ParmColorForeground := "AFAFAF"
+global ParmColorBackground := "111111"
+global ParmTransparency := 170
+global ParmMargin := 5
 
-global GuiProfileH := 40
-global GuiProfileW := 40
-global GuiProfilePosX := 740 ;KNumpad3_Action();A_ScreenWidth - GuiProfileW - 735
-global GuiProfilePosY := A_ScreenHeight - GuiProfileH - 35
+global OverlayMainH := 40
+global OverlayMainW := 75
+global OverlayMainPosX := 740
+global OverlayMainPosY := A_ScreenHeight - OverlayMainH - 35
 
-global GuiControlsH := 40
-global GuiControlsW := 500 
-global GuiControlsPosX := GuiProfilePosX + GuiProfileW + GuiMargin
-global GuiControlsPosY := A_ScreenHeight - GuiControlsH - 35
+global OverlayMiscH := 40
+global OverlayMiscW := 500 
+global OverlayMiscPosX := OverlayMainPosX + OverlayMainW + ParmMargin
+global OverlayMiscPosY := A_ScreenHeight - OverlayMiscH - 35

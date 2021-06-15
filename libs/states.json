@@ -1,0 +1,26 @@
+[{
+    "name": "play",
+    "rule": "or",
+    "pixels": [{
+        "x": 323,
+        "y": 1392,
+        "color": "0xB38040"
+    }, {
+        "x": 382,
+        "y": 1395,
+        "color": "0xB38040"
+
+    }]
+}, {
+    "name": "left-block",
+    "rule": "or",
+    "pixels": [{
+        "x": 882,
+        "y": 1407,
+        "color": "0x4C362E"
+    }, {
+        "x": 882,
+        "y": 8,
+        "color": "0x4C362E"
+    }]
+}]

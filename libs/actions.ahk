@@ -2,23 +2,7 @@
 ; Functions
 ;
 
-RunFunction(name,type)
-{
-    If (IsFunc(name))
-    {
-        OutputDebug, Try run: %name%(%type%)
-
-        fn := Func(name)
-        fn.Call(type)
-    }
-    Else
-    {
-        OutputDebug, Try run: %name%(%type%) // Warning: function not implemented
-    }
-    return
-}
-
-KeyPressAction(key,delay=0)
+Action(key,delay=0)
 {
     global
 
@@ -33,11 +17,7 @@ KeyPressAction(key,delay=0)
         ; Long-press start action
 
         OutputDebug, [K#%key%] long-press <start>
-
-        If (!ParmDebug)
-        {
-            RunFunction(Format("K{1}_action",key),2)
-        }
+        RunAction(Format("Action_{1}",key),2)
 
         KeyWait, %key%
         If !ErrorLevel 
@@ -45,11 +25,7 @@ KeyPressAction(key,delay=0)
             ; Long-press end action
 
             OutputDebug, [K#%key%] long-press <finish>
-
-            If (!ParmDebug)
-            {
-                RunFunction(Format("K{1}_action",key),3)
-            }
+            RunAction(Format("Action_{1}",key),3)
         }
     } 
     Else 
@@ -57,20 +33,30 @@ KeyPressAction(key,delay=0)
         ; Short-press action
 
         OutputDebug, [K#%key%] short-press
+        RunAction(Format("Action_{1}",key),1)
+    }
+    return
+}
 
-        If (!ParmDebug)
-        {
-            RunFunction(Format("K{1}_action",key),1)
-        }
+RunAction(name,type)
+{
+    If (IsFunc(name))
+    {
+        fn := Func(name)
+        fn.Call(type)
+    }
+    Else
+    {
+        OutputDebug, Try run: %name%(%type%) // Warning: function not implemented
     }
     return
 }
 
 ;
-; Actions
+; Action_*
 ;
 
-KA_Action(type) ; Actions: Atack..
+Action_A(type) ; Actions: Atack..
 {
     switch type
     {
@@ -88,7 +74,7 @@ KA_Action(type) ; Actions: Atack..
     return
 }
 
-KNumpad1_Action(type) ; Actions: Fast run and fly..
+Action_Numpad1(type) ; Actions: Fast run and fly..
 {
     global
 
@@ -109,7 +95,7 @@ KNumpad1_Action(type) ; Actions: Fast run and fly..
             return
 
         case 2: ; Choose direction for flight
-            If (Profile == 1)
+            If (ActiveProfile == 1)
             {
                 Send, {e down}
             }
@@ -120,7 +106,7 @@ KNumpad1_Action(type) ; Actions: Fast run and fly..
             return
 
         case 3: ; Fly
-            If (Profile == 1)
+            If (ActiveProfile == 1)
             {
                 Send, {e up}
             }
@@ -133,7 +119,7 @@ KNumpad1_Action(type) ; Actions: Fast run and fly..
     return
 }
 
-KNumpad2_Action(type) ; Actions: Drink flasks..
+Action_Numpad2(type) ; Actions: Drink flasks..
 {
     switch type
     {
@@ -183,7 +169,7 @@ KNumpad2_Action(type) ; Actions: Drink flasks..
     return
 }
 
-KNumpad3_Action(type) ; Actions: Teleport..
+Action_Numpad3(type) ; Actions: Teleport..
 {
     switch type
     {
@@ -203,20 +189,17 @@ KNumpad3_Action(type) ; Actions: Teleport..
     return
 }
 
-KNumpad4_Action(type) ; Actions: Next Profile
+Action_Numpad4(type) ; Actions: Next profile
 {
     global
 
     switch type
     {
-        case 1: ; Next Profile
-            If Profile < %ParmProfiles%
+        case 1: ; Next profile
+            If ActiveProfile < %ParmProfiles%
             {
-                Profile++
-            }
-
-            OutputDebug, Profile [%Profile%]
-            
+                ActiveProfile++
+            }           
             return
         case 2:
             return
@@ -226,20 +209,17 @@ KNumpad4_Action(type) ; Actions: Next Profile
     return
 }
 
-KNumpad5_Action(type) ; Actions: Prev Profile
+Action_Numpad5(type) ; Actions: Prev profile
 {
     global
 
     switch type
     {
         case 1: ; Prev Profile
-            If Profile > 1
+            If ActiveProfile > 1
             {
-                Profile--
+                ActiveProfile--
             }
-
-            OutputDebug, Profile [%Profile%]
-
             return
         case 2:
             return
@@ -249,7 +229,7 @@ KNumpad5_Action(type) ; Actions: Prev Profile
     return
 }
 
-KNumpad6_Action(type) ; Actions: Inventory and map..
+Action_Numpad6(type) ; Actions: Inventory and map..
 {
     switch type
     {
