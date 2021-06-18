@@ -5,7 +5,7 @@ global ActiveOverlays := true
 global States := {}
 
 global ParmDebug := false
-global ParmProfiles := 2
+global ParmProfiles := 3
 global ParmPressDelay := 0.5
 global ParmTimerDelay := 100
 

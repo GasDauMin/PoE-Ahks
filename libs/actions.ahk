@@ -56,192 +56,81 @@ RunAction(name,type)
 ; Action_*
 ;
 
-Action_A(type) ; Actions: Atack..
-{
-    switch type
-    {
-        case 1: ; ...
-            return
-
-        case 2: ; Attack press
-            Send, {MButton down}
-            return
-
-        case 3: ; Attack release
-            Send, {MButton up}
-            return
-    }
-    return
-}
-
-Action_Numpad1(type) ; Actions: Fast run and fly..
+Action_Numpad1(type) ; Actions: Speed combo and local teleport..
 {
     global
 
     switch type
     {
-        case 1: ; Fast run
-            Send, {q down}
-            Sleep, 110
-            Send, {q up}
-            Sleep, 221
-            Send, {w down}
-            Sleep, 101
-            Send, {w up}
-            Sleep, 205
-            Send, {2 down}
-            Sleep, 105
-            Send, {2 up}
+        case 1: ; Speed combo
+            MacroSpeedCombo()
             return
 
-        case 2: ; Choose direction for flight
-            If (ActiveProfile == 1)
-            {
-                Send, {e down}
-            }
-            Else
+        case 2: ;  Local teleport (hold)
+            If (ActiveProfile == 3)
             {
                 Send, {MButton down}
             }
+            Else
+            {
+                Send, {e down}
+            }
             return
 
-        case 3: ; Fly
-            If (ActiveProfile == 1)
-            {
-                Send, {e up}
-            }
-            Else
+        case 3: ; Local teleport (release)
+            If (ActiveProfile == 3)
             {
                 Send, {MButton up}
             }
-            return
-    }
-    return
-}
-
-Action_Numpad2(type) ; Actions: Drink flasks..
-{
-    switch type
-    {
-        case 1: ; Drink flasks [2,3,4,5]
-            Send, {2 down}
-            Sleep, 12
-            Send, {2 up}
-            Sleep, 11
-            Send, {3 down}
-            Sleep, 10
-            Send, {3 up}
-            Sleep, 8
-            Send, {4 down}
-            Sleep, 11
-            Send, {4 up}
-            Sleep, 10
-            Send, {5 down}
-            Sleep, 11
-            Send, {5 up}
-            return
-
-        case 2: ; Drink flasks [ALL]
-            Send, {1 down}
-            Sleep, 12
-            Send, {1 up}
-            Sleep, 12
-            Send, {2 down}
-            Sleep, 11
-            Send, {2 up}
-            Sleep, 10
-            Send, {3 down}
-            Sleep, 13
-            Send, {3 up}
-            Sleep, 9
-            Send, {4 down}
-            Sleep, 12
-            Send, {4 up}
-            Sleep, 10
-            Send, {5 down}
-            Sleep, 9
-            Send, {5 up}
-            return
-
-        case 3:
-            return
-    }
-    return
-}
-
-Action_Numpad3(type) ; Actions: Teleport..
-{
-    switch type
-    {
-        case 1: ; Teleport
-            Send, {t down}
-            Sleep, 101
-            Send, {t up}
-            return
-        case 2:
-            Send, {t down}
-            Sleep, 101
-            Send, {t up}
-            return
-        case 3:
-            return
-    }
-    return
-}
-
-Action_Numpad4(type) ; Actions: Next profile
-{
-    global
-
-    switch type
-    {
-        case 1: ; Next profile
-            If ActiveProfile < %ParmProfiles%
+            Else
             {
-                ActiveProfile++
-            }           
-            return
-        case 2:
-            return
-        case 3:
-            return
-    }
-    return
-}
-
-Action_Numpad5(type) ; Actions: Prev profile
-{
-    global
-
-    switch type
-    {
-        case 1: ; Prev Profile
-            If ActiveProfile > 1
-            {
-                ActiveProfile--
+                Send, {e up}
             }
             return
-        case 2:
-            return
-        case 3:
-            return
     }
     return
 }
 
-Action_Numpad6(type) ; Actions: Inventory and map..
+Action_Numpad2(type)
+{
+    If (ActiveProfile == 1)
+    {
+        MacroDrinkFlasks(4) ; Drink [2..5]
+    }
+    Else
+    {
+        MacroDrinkFlasks(5) ; Drink [1..5]
+    }
+    return
+}
+
+Action_Numpad3(type)
+{
+    MacroSkill(5) ; Teleport
+    return
+}
+
+Action_Numpad4(type)
+{
+    ProfileNext()
+    return
+}
+
+Action_Numpad5(type)
+{
+    ProfilePrev()
+    return
+}
+
+Action_Numpad6(type)
 {
     switch type
     {
-        case 1: ; Inventory
-            Send, {i down}
-            Sleep, 101
-            Send, {i up}
+        case 1:
+            MacroInventory()
             return
-        case 2: ; Map
-            Send, {Tab down}
-            Sleep, 101
-            Send, {Tab up}
+        case 2:
+            MacroMap()
             return
         case 3:
             return

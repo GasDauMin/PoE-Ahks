@@ -5,12 +5,13 @@ SetWorkingDir, %A_ScriptDir%
 #Include %A_ScriptDir%\libs\AutoHotkey-JSON\JSON.ahk
 
 #Include, %A_ScriptDir%\libs\global.ahk
+#Include, %A_ScriptDir%\libs\functions.ahk
 #Include, %A_ScriptDir%\libs\actions.ahk
 #Include, %A_ScriptDir%\libs\overlays.ahk
-#Include, %A_ScriptDir%\libs\functions.ahk
 
 LoadOverlays()
-LoadFunctions()
+
+SetTimer, timer, %ParmTimerDelay%
 
 return
 
@@ -70,37 +71,37 @@ Return
         return
     }
 
-    !Numpad1::
+    Numpad1::
     {
         Action("Numpad1", 0.2) 
         return
     }
 
-    !Numpad2::
+    Numpad2::
     {
         Action("Numpad2") 
         return
     }
 
-    !Numpad3::
+    Numpad3::
     {
         Action("Numpad3",0.2) 
         return
     }
 
-    !Numpad4::
+    Numpad4::
     {
         Action("Numpad4") 
         return
     }
 
-    !Numpad5::
+    Numpad5::
     {
         Action("Numpad5") 
         return
     }
 
-    !Numpad6::
+    Numpad6::
     {
         Action("Numpad6",0.2) 
         return

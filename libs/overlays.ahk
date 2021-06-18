@@ -58,11 +58,12 @@ InitOverlayMisc()
     ControlAdd("Aura2", "H", 40, 40, bg, "30CB6E", "Aura1")
     ControlAdd("Aura3", "V", 40, 40, bg, "C01616", "Aura2")
     ControlAdd("Aura4", "E", 40, 40, bg, "9600FF", "Aura3")
+    ControlAdd("Aura5", "R", 40, 40, bg, "FF9C00", "Aura4")
 
     local bg := "72A4DD"
     local fg := "111111"
 
-    ControlAdd("Hideout", "H", 40, 40, "9600FF", fg, "Aura4")
+    ControlAdd("Hideout", "H", 40, 40, "9600FF", fg, "Aura5")
 
     Gui, Misc:Font, c72A4DD s8, %ParmFont%
     local bg := 1f1f1f
@@ -138,77 +139,60 @@ OverlayShow()
 
 Press_Overlay()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-
-    Send, +{Space}
-
+    MacroAwkOverlay()
     return
 }
 
 Press_Thx1()
 {
-    WinActivate, % "ahk_class POEWindowClass"  
-
-    Send, ^{Enter}
-    Send, Thank you :)
-    Send, {Enter}
-
+    MacroChatMessage("Thank You :)")
     return
 }
 
 Press_Thx2()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-
-    Send, ^{Enter}
-    Send, Thx gl :)
-    Send, {Enter}
-
+    MacroChatMessage("Ty gl :)")
     return
 }
 
 Press_Aura1()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-    send, ^{q}
+    MacroSkill(6)
     return
 }
 
 Press_Aura2()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-    send, ^{w}
+    MacroSkill(7)
     return
 }
 
 Press_Aura3()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-    send, ^{e}
+    MacroSkill(8)
     return
 }
 
 Press_Aura4()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-    send, ^{r}
+    MacroSkill(9)
+    return
+}
+
+Press_Aura5()
+{
+    MacroSkill(4)
     return
 }
 
 Press_Teleport()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-    Send, {t}
+    MacroSkill(5)
     return
 }
 
 Press_Hideout()
 {
-    WinActivate, % "ahk_class POEWindowClass"
-
-    Send, {Enter}
-    Send, /hideout
-    Send, {Enter}
-
+    MacroChatMessage("/hideout")
     return
 }
