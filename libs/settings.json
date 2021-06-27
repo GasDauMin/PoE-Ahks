@@ -1,0 +1,27 @@
+{
+    "Profiles": [
+        {
+            "Id":1,
+            "Macro_DrinkFlasks": 4,
+            "Macro_SpeedCombo": 1,
+            "Action_Numpad1_PressDelay": "0.2",
+            "Action_Numpad3_PressDelay": "1.0"
+        },
+        {
+            "Id":2,
+            "Macro_DrinkFlasks": 5,
+            "Macro_SpeedCombo": 2,
+            "Action_Numpad1_PressDelay": "0.2",
+            "Action_Numpad3_PressDelay": "1.0"
+        }
+    ],
+    "Parameters": {
+        "DevMode": 1,
+        "Profile": 1,
+        "PressDelay": "0.5",
+        "TimerDelay": 250,
+        "ScreenWidth": 2560,
+        "ScreenHeight": 1440,
+        "RestrictedMode": false
+    }
+}

@@ -1,26 +1,41 @@
-global ActiveState := -1
-global ActiveProfile := 1
-global ActiveOverlays := true
+global config := % A_ScriptDir . "\libs\settings.json"
 
-global States := {}
+global enumState := 
+(LTrim Join
+    {
+        "Unknown": 0,
+        "Play": 1 << 0, 
+        "Chat": 1 << 1, 
+        "LeftPanel": 1 << 2, 
+        "RightPanel": 1 << 3, 
+        "CenterPanel": 1 << 4,
+        "Overlay": 1 << 5,
+        "Stash": 1 << 6,
+        "Inventory": 1 << 7,
+        "Guild": 1 << 8
+    }
+)
 
-global ParmDebug := false
-global ParmProfiles := 3
-global ParmPressDelay := 0.5
-global ParmTimerDelay := 100
+global enumHealth := 
+(LTrim Join
+    {
+        "Unknown": 0,
+        "Full": 1, 
+        "High": 2, 
+        "Medium": 3, 
+        "Low": 4
+    }
+)
 
-global ParmFont := "Segoe UI"
-global ParmColorForeground := "AFAFAF"
-global ParmColorBackground := "111111"
-global ParmTransparency := 170
-global ParmMargin := 5
+global enumAction := 
+(LTrim Join
+    {
+        "None": 0,
+        "ShortPress": 1, 
+        "LongPress": 2, 
+        "LongRelease": 3
+    }
+)
 
-global OverlayMainH := 40
-global OverlayMainW := 75
-global OverlayMainPosX := 740
-global OverlayMainPosY := A_ScreenHeight - OverlayMainH - 35
-
-global OverlayMiscH := 40
-global OverlayMiscW := 500 
-global OverlayMiscPosX := OverlayMainPosX + OverlayMainW + ParmMargin
-global OverlayMiscPosY := A_ScreenHeight - OverlayMiscH - 35
+global session := {}
+global timerLock := false
