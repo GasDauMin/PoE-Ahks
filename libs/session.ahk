@@ -100,7 +100,7 @@ Class ClassSession {
     {
         this.Data.Parameters.Profile := index
         this.Data.Active.Profile := this.DeepCloneObject(this.Data.Profiles[index])
-        
+    
         if (this.Data.Parameters.DevMode)
         {
             OutputDebug, % "Profile: " + session.Data.Parameters.Profile

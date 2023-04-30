@@ -15,7 +15,7 @@ Action_Numpad1(type) ; Actions: Speed combo and local teleport..
             }
             Else
             {
-                Send, {e down}
+                Send, {w down}
             }
             return
 
@@ -26,7 +26,7 @@ Action_Numpad1(type) ; Actions: Speed combo and local teleport..
             }
             Else
             {
-                Send, {e up}
+                Send, {w up}
             }
             return
     }
@@ -60,12 +60,20 @@ Action_Numpad4(type)
 {
     global session
     session.ProfileNext()
+
+    ToolTip, % "Profile: " + session.Data.Parameters.Profile
+    SetTimer, RemoveTooltip, 200
+
     return
 }
 
 Action_Numpad5(type)
 {
     session.ProfilePrev()
+
+    ToolTip, % "Profile: " + session.Data.Parameters.Profile
+    SetTimer, RemoveTooltip, 200
+
     return
 }
 
@@ -91,6 +99,11 @@ SleepRandom(a,b)
 {
     Random, delay, a, b
     Sleep, delay
+}
+
+RemoveTooltip()
+{
+    Tooltip
 }
 
 ;; Macro_*
@@ -176,14 +189,14 @@ Macro_SpeedCombo(tp = 1)
 {
     Send, {q}
     SleepRandom(175,225)
-    Send, {w}
-    SleepRandom(175,225)
+    ;Send, {w}
+    ;SleepRandom(175,225)
 
     ;; Drink speed flask
 
-    if (tp == 2)
+    if (tp == 1)
     {
-        Send, {2}
+        Send, {5}
     }
 
     return

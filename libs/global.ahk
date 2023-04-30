@@ -1,4 +1,4 @@
-global config := % A_ScriptDir . "\libs\settings.json"
+global config := % A_ScriptDir . "\settings.json"
 
 global enumState := 
 (LTrim Join

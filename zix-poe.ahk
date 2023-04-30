@@ -54,18 +54,6 @@ Return
 
 #If IsActive() and IsPlayState()
 
-    F1::
-    {
-        Macro_ThanksRandom()
-        return
-    }
-
-    F3::
-    {
-        Macro_Hideout()
-        return
-    }
-
     Numpad1::
     {
         action("Numpad1")
